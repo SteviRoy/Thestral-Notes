@@ -41,3 +41,19 @@ app.post('/api/notes', (req, res) => {
   // Return the new note to the client as JSON
   res.json(newNote);
 });
+
+// Route handler for the DELETE /api/notes/:id route
+app.delete('/api/notes/:id', (req, res) => {
+  // Read the JSON file and parse its contents
+  const notes = JSON.parse(fs.readFileSync('./db/db.json'));
+
+  // Remove the note with the specified ID
+  const updatedNotes = notes.filter(note => note.id !== req.params.id);
+
+  // Write the updated notes array to the JSON file
+  fs.writeFileSync('./db/db.json', JSON.stringify(updatedNotes));
+
+  // Respond with a success status code and a message
+  res.status(200).json({ message: 'Note deleted successfully' });
+});
+
