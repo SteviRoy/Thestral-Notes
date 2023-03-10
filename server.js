@@ -24,3 +24,20 @@ app.get('/api/notes', (req, res) => {
   res.json(notes);
 });
 
+// Route handler for the POST /api/notes route
+app.post('/api/notes', (req, res) => {
+  // Read the db.json file
+  const notesData = fs.readFileSync('./db/db.json', 'utf8');
+  // Parse the JSON data
+  const notes = JSON.parse(notesData);
+  // Get the new note data from the request body
+  const newNote = req.body;
+  // Generate a unique id using the uuid package
+  newNote.id = uuid.v4();
+  // Add the new note to the array of saved notes
+  notes.push(newNote);
+  // Write the updated notes data to the db.json file
+  fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+  // Return the new note to the client as JSON
+  res.json(newNote);
+});
