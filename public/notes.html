@@ -69,6 +69,24 @@
         $('.list-group').append(listItem);
         }
       });
+      // Save new note to the server
+      $('.save-note').on('click', () => {
+        const noteTitle = $('.note-title').val();
+        const noteText = $('.note-textarea').val();
+        if (noteTitle && noteText) {
+          $.ajax({
+            url: '/api/notes',
+            method: 'POST',
+            data: {
+              title: noteTitle,
+              text: noteText,
+            },
+          }).then(() => {
+            // Reload the page to display the new note
+            location.reload();
+          });
+        }
+      });
       
   </body>
 </html>
