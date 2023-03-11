@@ -47,6 +47,28 @@
       crossorigin="anonymous">
     </script>
     <script src="/assets/js/index.js"></script>
-
+    <script>
+      // Retrieve saved notes from the server
+      $.ajax({
+        url: '/api/notes',
+        method: 'GET',
+      }).then((data) => {
+        // Render saved notes on the page
+        for (const note of data) {
+          const listItem = $('<li>').addClass(
+            'list-group-item d-flex justify-content-between align-items-center'
+          );
+          const noteTitle = $('<h6>').text(note.title);
+          const noteDate = $('<small>').text(
+            new Date(note.timestamp).toLocaleString()
+          );
+          const deleteButton = $(
+            '<button type="button" class="btn btn-danger delete-note"><i class="fas fa-trash-alt"></i></button>'
+          ).attr('data-id', note.id);
+          listItem.append(noteTitle, noteDate, deleteButton);
+        $('.list-group').append(listItem);
+        }
+      });
+      
   </body>
 </html>
