@@ -87,6 +87,17 @@
           });
         }
       });
-      
+      // Delete note from the server
+      $('.list-group').on('click', '.delete-note', function () {
+        const noteId = $(this).attr('data-id');
+        $.ajax({
+          url: `/api/notes/${noteId}`,
+          method: 'DELETE',
+        }).then(() => {
+          // Reload the page to reflect the deleted note
+          location.reload();
+        });
+      });
+    </script>
   </body>
 </html>
