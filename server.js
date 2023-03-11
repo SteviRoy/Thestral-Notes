@@ -57,3 +57,7 @@ app.delete('/api/notes/:id', (req, res) => {
   res.status(200).json({ message: 'Note deleted successfully' });
 });
 
+// Route handler for the GET /notes route
+app.get('/notes', (req, res) => {
+  res.sendFile(__dirname + '/public/notes.html');
+});
