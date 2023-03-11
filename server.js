@@ -26,20 +26,24 @@ app.get('/api/notes', (req, res) => {
 
 // Route handler for the POST /api/notes route
 app.post('/api/notes', (req, res) => {
-  // Read the db.json file
-  const notesData = fs.readFileSync('./db/db.json', 'utf8');
-  // Parse the JSON data
-  const notes = JSON.parse(notesData);
-  // Get the new note data from the request body
-  const newNote = req.body;
-  // Generate a unique id using the uuid package
-  newNote.id = uuid.v4();
-  // Add the new note to the array of saved notes
+  // Read the existing notes from the JSON file
+  const notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+
+  // Create a new note object with a unique ID
+  const newNote = {
+    id: uuid.v4(),
+    title: req.body.title,
+    text: req.body.text
+  };
+
+  // Add the new note to the array of notes
   notes.push(newNote);
-  // Write the updated notes data to the db.json file
-  fs.writeFileSync('./db/db.json', JSON.stringify(notes));
-  // Return the new note to the client as JSON
-  res.json(newNote);
+
+  // Write the updated notes array back to the JSON file
+  fs.writeFile('./db/db.json', JSON.stringify(notes, null, 2), err => {
+    if (err) throw err;
+    res.json(newNote);
+  });
 });
 
 // Route handler for the DELETE /api/notes/:id route
@@ -51,7 +55,7 @@ app.delete('/api/notes/:id', (req, res) => {
   const updatedNotes = notes.filter(note => note.id !== req.params.id);
 
   // Write the updated notes array to the JSON file
-  fs.writeFileSync('./db/db.json', JSON.stringify(updatedNotes));
+  fs.writeFileSync('./db/db.json', JSON.stringify(updatedNotes, null, 2));
 
   // Respond with a success status code and a message
   res.status(200).json({ message: 'Note deleted successfully' });
