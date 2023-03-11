@@ -61,3 +61,9 @@ app.delete('/api/notes/:id', (req, res) => {
 app.get('/notes', (req, res) => {
   res.sendFile(__dirname + '/public/notes.html');
 });
+
+// Route handler for the GET / route
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
