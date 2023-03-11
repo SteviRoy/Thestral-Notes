@@ -6,6 +6,15 @@
 
 Thestral Notes is a note-taking web application built with Express.js, Node.js, and JavaScript. It allows users to create, read, update, and delete notes. The notes are stored in a JSON file on the server.
 
+## Screenshots
+
+The following images show the web application's appearance and functionality:
+
+![Existing notes are listed in the left-hand column with empty fields on the right-hand side for the new note’s title and text.](./Screenshots/11-express-homework-demo-01.png)
+
+![Note titled “Balance accounts” reads, “Balance account books by end of day Monday,” with other notes listed on the left.](./Screenshots/11-express-homework-demo-02.png)
+
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -14,6 +23,7 @@ Thestral Notes is a note-taking web application built with Express.js, Node.js, 
 - [Tests](#tests)
 - [License](#license)
 - [Questions](#questions)
+
 
 ## Installation
 
