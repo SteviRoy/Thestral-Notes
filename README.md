@@ -27,11 +27,11 @@ The following images show the web application's appearance and functionality:
 
 ## Installation
 
-To install the project, clone the repository from GitHub. Then, run npm install to install the required dependencies.
+To install the project, clone the repository from GitHub. Then, run `npm install` to install the required dependencies.
 
 ## Usage
 
-To use the project, run npm start to start the server. Then, navigate to http://localhost:3001 in a web browser to access the application. From there, users can create new notes, edit existing notes, and delete notes.
+To use the project, run `npm start` to start the server. Then, navigate to http://localhost:3001 in a web browser to access the application. From there, users can create new notes, edit existing notes, and delete notes.
 Or, visit to https://thestral-notes.herokuapp.com/
 
 ## Contributions
